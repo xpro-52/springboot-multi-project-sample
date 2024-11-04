@@ -1,0 +1,18 @@
+services:
+  postgrsql-db:
+    build:
+      context: .
+      dockerfile: ./db/Dockerfile
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: sample_db
+    ports:
+      - "15432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/tmp/:/usr/src/postgres-db/tmp/
+
+volumes:
+  postgres_data:
